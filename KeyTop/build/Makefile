@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -Os
-LDFLAGS = -mwindows -lcomctl32 -lshell32
+LDFLAGS = -mwindows -lcomctl32 -lshell32 -luser32 -lgdi32
 TARGET = KeyTop.exe
 
 SRCDIR = ../src
