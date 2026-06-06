@@ -2,43 +2,28 @@ name: Build KeyTop
 
 on:
   push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
-  workflow_dispatch:  # 允许手动触发
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Setup MinGW
+    - name: Install MinGW
       uses: msys2/setup-msys2@v2
       with:
-        update: true
-        install: >-
-          mingw-w64-x86_64-gcc
-          mingw-w64-x86_64-make
-          mingw-w64-x86_64-binutils
+        install: mingw-w64-x86_64-gcc mingw-w64-x86_64-make
 
-    - name: Build KeyTop
+    - name: Build
       shell: msys2 {0}
       run: |
         cd build
         make
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: KeyTop-Windows
-        path: build/KeyTop.exe
-        retention-days: 30
-
-    - name: Create Release
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    - name: Upload to Release
       uses: softprops/action-gh-release@v2
       with:
         tag_name: v1.0.0
@@ -53,14 +38,9 @@ jobs:
           - 窗口置顶和穿透
           - 多种操作方式（快捷键、鼠标中键、托盘菜单）
 
-          ## 下载
-          - **KeyTop.exe** - 主程序（直接运行，无需安装）
-
           ## 系统要求
           - Windows 10/11
           - 无需额外依赖
         files: build/KeyTop.exe
-        draft: false
-        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
