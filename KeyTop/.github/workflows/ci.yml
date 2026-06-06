@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup MinGW
+      uses: msys2/setup-msys2@v2
+      with:
+        install: mingw-w64-x86_64-gcc
+
+    - name: Build
+      shell: msys2 {0}
+      run: |
+        cd build
+        make
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: KeyTop-Windows
+        path: build/KeyTop.exe
