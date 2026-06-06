@@ -1,0 +1,26 @@
+[General]
+; Auto-start with Windows (0=disabled, 1=enabled)
+AutoStart=0
+; Log level (0=Error, 1=Warning, 2=Info, 3=Debug)
+LogLevel=2
+; Show operation notifications (0=disabled, 1=enabled)
+ShowNotifications=1
+
+[Keyboard]
+; Format: FromKey=ToKey
+; Single key mapping
+CapsLock=Escape
+
+[Window]
+; Topmost hotkey (default: Ctrl+Space)
+TopkeyMod=Ctrl
+TopkeyVk=Space
+; Transparent hotkey (default: Ctrl+Shift+Space)
+TransKeyMod=Ctrl+Shift
+TransKeyVk=Space
+; Enable mouse middle-click for topmost (0=disabled, 1=enabled)
+EnableMidClick=1
+
+[Hotkeys]
+; Custom hotkeys (Format: Name=Modifiers+Key)
+; Example: OpenNotepad=Ctrl+Shift+N
