@@ -1,0 +1,18 @@
+# Build output
+build/*.o
+build/*.obj
+KeyTop.exe
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Config files (user-specific)
+KeyTop.ini
+KeyTop.log
+KeyTop.ini.bak
+
+# System files
+Thumbs.db
+Desktop.ini
